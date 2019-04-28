@@ -1,5 +1,7 @@
 PWD := $(shell pwd)
 
+all: build build-win
+
 build:
 	@echo "Building diff-csv binary to './diff-csv'"
 	@go build ./cmd/main.go

@@ -3,7 +3,7 @@
 ### 如何编译
 
 ```
-make build
+make
 ```
 
 
