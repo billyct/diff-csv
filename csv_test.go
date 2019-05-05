@@ -33,8 +33,10 @@ func TestDiffStrings(t *testing.T) {
 		a, b,
 	}
 
-	expected := []string{
-		"222",
+	expected := [][]string {
+		[]string{
+			"222",
+		},
 	}
 
 	if !reflect.DeepEqual(DiffStrings(data), expected) {

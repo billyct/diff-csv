@@ -64,11 +64,11 @@ func ReadCsv(path string, n int) ([]string, error) {
 }
 
 // 比对两个 slice，已经排好序
-func DiffStrings(ss [][]string) []string {
+func DiffStrings(ss [][]string) [][]string {
 	a := ss[0]
 	b := ss[1]
 
-	var diff []string
+	var diff [][]string
 	m := make(map[string]string)
 
 	for _, bString := range b {
@@ -77,7 +77,7 @@ func DiffStrings(ss [][]string) []string {
 
 	for _, aString := range a {
 		if _, ok := m[aString]; !ok {
-			diff = append(diff, aString)
+			diff = append(diff, []string{aString})
 		}
 	}
 
@@ -85,7 +85,7 @@ func DiffStrings(ss [][]string) []string {
 }
 
 // 创建 csv
-func MakeCsv(data []string, path string) error {
+func MakeCsv(data [][]string, path string) error {
 	f, err := os.Create(path)
 	if err != nil {
 		return err
@@ -95,9 +95,7 @@ func MakeCsv(data []string, path string) error {
 	w := csv.NewWriter(f)
 	defer w.Flush()
 
-	w.WriteAll([][]string{
-		data,
-	})
+	w.WriteAll(data)
 
 	return nil
 }
